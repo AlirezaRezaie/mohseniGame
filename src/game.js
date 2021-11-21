@@ -5,10 +5,14 @@ let maxHeight = 900;
 let speed;
 
 var config = {
-  type: Phaser.AUTO,
-  parent: "phaser-example",
+  type: Phaser.CANVAS,
   width: 800,
-  height: 900,
+  height: 1080,
+  parent: "game",
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+  },
   scene: {
     preload: preload,
     create: create,
@@ -50,7 +54,10 @@ function create() {
 
 function update() {
   speed = Math.floor(Math.random() * 19);
-  if (game.input.mousePointer.isDown && mohseni.y < 600) {
+  if (
+    (game.input.mousePointer.isDown && mohseni.y < 600) ||
+    (this.isDown && mohseni.y < 600)
+  ) {
     //
     speed = 0;
     console.log("are");
